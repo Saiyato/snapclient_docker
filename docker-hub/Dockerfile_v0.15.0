@@ -32,4 +32,4 @@ RUN apt-get -f install -y \
 
 RUN snapclient -v
 
-ENTRYPOINT ["/bin/bash","-c","snapclient -l && snapclient -h $HOST -s $SOUNDCARD"]
+ENTRYPOINT ["/bin/bash","-c","snapclient -v && snapclient -h $HOST -s $SOUNDCARD"]
