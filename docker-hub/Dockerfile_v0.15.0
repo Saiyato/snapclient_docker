@@ -1,5 +1,7 @@
 # Install SnapClient on minimal OS
 FROM resin/rpi-raspbian:jessie
+COPY qemu-arm-static /usr/bin
+
 MAINTAINER Saiyato
 
 ARG SNAPCASTVERSION
