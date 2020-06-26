@@ -1,5 +1,5 @@
 # Dockerized SnapClient
-This repository contains the scripts to auto-build images for SnapClient for the ARM architecture.
+This repository contains the scripts to auto-build images for SnapClient for the ARM architecture. The base image *resin/rpi-raspbian:jessie* is used for v0.15.0 and *resin/rpi-raspbian:buster* is used for newer versions.
 
 ## How to use
 To use the images, follow the next steps
