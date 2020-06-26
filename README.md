@@ -1,5 +1,5 @@
 # Dockerized SnapClient
-This repository contains auto-built images for SnapClient, based on the corresponding github repository: https://github.com/Saiyato/snapclient_docker
+This repository contains the scripts to auto-build images for SnapClient for the ARM architecture.
 
 ## How to use
 To use the images, follow the next steps
