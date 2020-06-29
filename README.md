@@ -4,10 +4,8 @@
 ## Dockerized SnapClient
 This repository contains the scripts to auto-build images for SnapClient (the *player* or *client* part of the solution) for the ARM architecture. The base image *resin/rpi-raspbian:jessie* was initially used for v0.15.0 and *resin/rpi-raspbian:buster* was used for newer versions; I've then moved forward to *arm32v7/alpine:latest* instead, and build from source instead of using pre-built binaries from the package archive.
 
-<img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/alpine?style=flat-square">
-<img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/alpine?style=flat-square">
-<img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapclient?style=flat-square">
+###### Project info
+<img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square"><img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/alpine?style=flat-square"><img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/alpine?style=flat-square"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapclient?style=flat-square">
 
 ## How to use
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
