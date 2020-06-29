@@ -1,5 +1,8 @@
-# Dockerized SnapClient
-This repository contains the scripts to auto-build images for SnapClient for the ARM architecture. The base image *resin/rpi-raspbian:jessie* was used initially for v0.15.0 and *resin/rpi-raspbian:buster* was used for newer versions; I've then moved forward to *arm32v7/alpine:latest* instead, and build from source.
+# SnapCast
+[Snapcast](https://github.com/badaix/snapcast) is a multiroom client-server audio player, where all clients are time synchronized with the server to play perfectly synced audio. It's not a standalone player, but an extension that turns your existing audio player into a Sonos-like multiroom solution. The server's audio input is a named pipe `/tmp/snapfifo`. All data that is fed into this file will be sent to the connected clients. One of the most generic ways to use Snapcast is in conjunction with the music player daemon (MPD) or Mopidy, which can be configured to use a named pipe as audio output.
+
+## Dockerized SnapClient
+This repository contains the scripts to auto-build images for SnapClient (the *player* or *client* part of the solution) for the ARM architecture. The base image *resin/rpi-raspbian:jessie* was initially used for v0.15.0 and *resin/rpi-raspbian:buster* was used for newer versions; I've then moved forward to *arm32v7/alpine:latest* instead, and build from source instead of using pre-built binaries from the package archive.
 
 <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/alpine?style=flat-square">
@@ -7,16 +10,15 @@ This repository contains the scripts to auto-build images for SnapClient for the
 <img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapclient?style=flat-square">
 
 ## How to use
-To use the images, follow the next steps
-1. Run and pull the image from the repo and set necessary parameters;
- a. Add the sound device of the host to the container
- b. Set the hosting SnapServer you want to subscribe to
- c. Set the soundcard you wish to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
+To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
+1. Add the sound device of the host to the container (for security reasons I want to refrain from using `--privileged`)
+2. Define the hosting SnapServer you want to subscribe to
+3. Define the soundcard you wish to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
 
 You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient:alpine -l` or `aplay -l`. Some example outputs:
 ###### BossDAC example with "snapclient -l"
 ```
-pi@buildpi:~ $ docker run --device /dev/snd saiyato/snapclient:alpine -l
+pi@buildpi:~ $ docker run --rm --device /dev/snd saiyato/snapclient:alpine -l
 0: null
 Discard all samples (playback) or generate zero samples (capture)
 
@@ -70,5 +72,14 @@ docker run \
 --device /dev/snd \
 -h 192.168.1.10 \
 -s BossDAC \
+saiyato/snapclient:alpine \
+```
+Or in the case of a Hifiberry soundcard
+```
+docker run \
+--rm \
+--device /dev/snd \
+-h 192.168.1.10 \
+-s sndrpihifiberry \
 saiyato/snapclient:alpine \
 ```
