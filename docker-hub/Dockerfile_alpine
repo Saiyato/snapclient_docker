@@ -1,5 +1,4 @@
 # Install SnapClient on minimal OS
-MAINTAINER Saiyato
 FROM alpine AS builder
 
 # Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
@@ -9,6 +8,7 @@ RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 FROM alpine:latest
 COPY --from=builder qemu-arm-static /usr/bin
 
+MAINTAINER Saiyato
 ENV HOST snapserver
 ENV SOUNDCARD alsa
 
