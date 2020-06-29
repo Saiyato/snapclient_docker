@@ -23,4 +23,4 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
  && apk add avahi-libs flac libvorbis opus soxr alsa-lib \
  && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
-ENTRYPOINT ["/bin/bash","-c","snapclient -v && snapclient -h $HOST -s $SOUNDCARD"]
+ENTRYPOINT ["snapclient"]
