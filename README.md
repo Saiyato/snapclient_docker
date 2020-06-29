@@ -3,12 +3,12 @@ This repository contains the scripts to auto-build images for SnapClient for the
 
 ## How to use
 To use the images, follow the next steps
-1. Run and pull the image from the repo and set necessary options;
+1. Run and pull the image from the repo and set necessary parameters;
  a. Add the sound device of the host to the container
- b. Define ENVIRONMENT variable HOST and set the value to the SnapServer you want to subscribe to
- c. Define ENVIRONMENT variable SOUNDCARD and set the value to the soundcard you would like to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
+ b. Set the hosting SnapServer you want to subscribe to
+ c. Set the soundcard you wish to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
 
-You can list the soundcards by invoking `snapclient -l` or `aplay -l`. Some example outputs:
+You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient:alpine -l` or `aplay -l`. Some example outputs:
 ###### BossDAC
 ```
 pi@raspberrypi:~ $ aplay -l
@@ -54,7 +54,6 @@ card 1: sndrpihifiberry [snd_rpi_hifiberry_dac], device 0: HifiBerry DAC HiFi pc
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 ```
-Which means you will need to add the `--env` or `-e` options and reference HOST and SOUNDCARD followed by an equals sign and a value.
 
 ## Short and concise example
 The below example demonstrates how you can run the container using the above information. Note that I have added the `--rm` option, to auto-delete the container after exiting (for cleanup purposes).
@@ -63,7 +62,7 @@ The below example demonstrates how you can run the container using the above inf
 docker run \
 --rm \
 --device /dev/snd \
---env HOST=192.168.1.10 \
---env SOUNDCARD=BossDAC \
-saiyato/snapclient:v0.20.0 \
+-h 192.168.1.10 \
+-s BossDAC \
+saiyato/snapclient:alpine \
 ```
