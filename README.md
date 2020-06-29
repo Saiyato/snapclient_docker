@@ -9,31 +9,32 @@ To use the images, follow the next steps
  c. Set the soundcard you wish to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
 
 You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient:alpine -l` or `aplay -l`. Some example outputs:
-###### BossDAC
+###### BossDAC example with "snapclient -l"
 ```
-pi@raspberrypi:~ $ aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: ALSA [bcm2835 ALSA], device 0: bcm2835 ALSA [bcm2835 ALSA]
-  Subdevices: 8/8
-  Subdevice #0: subdevice #0
-  Subdevice #1: subdevice #1
-  Subdevice #2: subdevice #2
-  Subdevice #3: subdevice #3
-  Subdevice #4: subdevice #4
-  Subdevice #5: subdevice #5
-  Subdevice #6: subdevice #6
-  Subdevice #7: subdevice #7
-card 0: ALSA [bcm2835 ALSA], device 1: bcm2835 ALSA [bcm2835 IEC958/HDMI]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 1: BossDAC [BossDAC], device 0: Boss DAC HiFi [Master] pcm512x-hifi-0 []
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
+pi@buildpi:~ $ docker run --device /dev/snd saiyato/snapclient:alpine -l
+0: null
+Discard all samples (playback) or generate zero samples (capture)
+
+1: default:CARD=ALSA
+bcm2835 ALSA, bcm2835 ALSA
+Default Audio Device
+
+2: sysdefault:CARD=ALSA
+bcm2835 ALSA, bcm2835 ALSA
+Default Audio Device
+
+3: default:CARD=BossDAC
+BossDAC,
+Default Audio Device
+
+4: sysdefault:CARD=BossDAC
+BossDAC,
+Default Audio Device
 ```
 
-###### HifiBerry card
+###### HifiBerry card example with "aplay -l"
 ```
-pi@raspiberrypi:~$ aplay -l
+pi@buildpi:~$ aplay -l
 **** List of PLAYBACK Hardware Devices ****
 card 0: ALSA [bcm2835 ALSA], device 0: bcm2835 ALSA [bcm2835 ALSA]
   Subdevices: 7/7
