@@ -1,0 +1,35 @@
+# Install SnapClient on minimal OS
+FROM alpine AS builder
+
+# Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz
+RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
+
+FROM alpine:latest
+COPY --from=builder qemu-arm-static /usr/bin
+
+MAINTAINER Saiyato
+
+ARG SNAPCASTVERSION
+ARG VERSIONSUFFIX
+
+ENV HOST snapserver
+ENV SOUNDCARD alsa
+
+RUN apt-get update && apt-get install -y \
+        dirmngr \
+        gnupg \
+        wget \
+        alsa-base \
+        alsa-utils
+
+RUN wget https://github.com/badaix/snapcast/releases/download/v0.15.0/snapclient_0.15.0_armhf.deb
+
+RUN dpkg -i --force-all snapclient_0.15.0_armhf.deb
+
+RUN apt-get -f install -y \
+        && rm -rf /var/lib/apt/lists/*
+
+RUN snapclient -v
+
+ENTRYPOINT ["/bin/bash","-c","snapclient -v && snapclient -h $HOST -s $SOUNDCARD"]
