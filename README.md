@@ -4,6 +4,7 @@ This repository contains the scripts to auto-build images for SnapClient for the
 <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/alpine?style=flat-square">
 <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/alpine?style=flat-square">
+<img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapclient?style=flat-square">
 
 ## How to use
 To use the images, follow the next steps
