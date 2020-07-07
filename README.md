@@ -10,9 +10,9 @@ I've then moved forward to *{arch}/alpine:latest* instead, and build from source
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 
 ###### raspbian v0.15.0
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/v0.15.0?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/v0.15.0?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/raspbian_v0.15.0?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/raspbian_v0.15.0?style=flat-square">
 ###### raspbian v0.20.0
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/v0.20.0?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/v0.20.0?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/raspbian_v0.20.0?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/raspbian_v0.20.0?style=flat-square">
 
 ###### ARM32v6
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v6?style=flat-square">
