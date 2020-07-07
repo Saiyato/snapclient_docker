@@ -24,8 +24,4 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
  
 # Don't remove /var/cache/apk/* and /lib/apk/db/* for scanning purposes
 
-EXPOSE 1704
-EXPOSE 1705
-EXPOSE 1780
-
 ENTRYPOINT ["snapclient"]
