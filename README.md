@@ -87,16 +87,16 @@ The below example demonstrates how you can run the container using the above inf
 docker run \
 --rm \
 --device /dev/snd \
--h 192.168.1.10 \
--s BossDAC \
 saiyato/snapclient:alpine \
+-h 192.168.1.10 \
+-s BossDAC
 ```
 Or in the case of a Hifiberry soundcard
 ```
 docker run \
 --rm \
 --device /dev/snd \
--h 192.168.1.10 \
--s sndrpihifiberry \
 saiyato/snapclient:alpine \
+-h 192.168.1.10 \
+-s sndrpihifiberry
 ```
