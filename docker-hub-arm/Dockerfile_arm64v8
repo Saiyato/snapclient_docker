@@ -22,8 +22,4 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
  && apk add avahi-libs flac libvorbis opus soxr alsa-lib \
  && rm -rf /etc/ssl /var/cache/apk/* and /lib/apk/db/* /root/snapcast /root/snapweb
 
-EXPOSE 1704
-EXPOSE 1705
-EXPOSE 1780
-
 ENTRYPOINT ["snapclient"]
