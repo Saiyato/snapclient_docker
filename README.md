@@ -86,6 +86,7 @@ The below example demonstrates how you can run the container using the above inf
 ```
 docker run \
 --rm \
+--name snapclient \
 --device /dev/snd \
 saiyato/snapclient:alpine \
 -h 192.168.1.10 \
@@ -95,6 +96,7 @@ Or in the case of a Hifiberry soundcard
 ```
 docker run \
 --rm \
+--name snapclient \
 --device /dev/snd \
 saiyato/snapclient:alpine \
 -h 192.168.1.10 \
