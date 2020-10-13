@@ -6,6 +6,8 @@ This repository contains the scripts to auto-build images for SnapClient (the *p
 
 I've then moved forward to *{arch}/alpine:latest* instead, and build from source instead of using pre-built binaries from the package archive. So all architecture specific images use the Alpine base image.
 
+Todo: configure auto-build for changes in Badaix's repo
+
 ###### Overall
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 
