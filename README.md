@@ -12,7 +12,7 @@ Todo: configure auto-build for changes in Badaix's repo
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 
 ###### raspbian images
-The Raspbian images have been deprecated, as they served only little purpose. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
+The Raspbian images have been discontinued. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
 
 ###### ARM32v6
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v6?style=flat-square">
