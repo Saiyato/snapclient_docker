@@ -14,11 +14,11 @@ Todo: configure auto-build for changes in Badaix's repo
 ###### raspbian images
 The Raspbian images have been discontinued. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
 
-###### ARM32v6
+###### ARM32v6 (Raspberry Pi 1, Raspberry Pi Zero)
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v6?style=flat-square">
-###### ARM32v7
+###### ARM32v7 (Raspberry Pi 2)
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v7?style=flat-square">
-###### ARM64v8
+###### ARM64v8 (Raspberry Pi 3, 3A+, 3B+, 4)
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm64v8?style=flat-square">
 
 ###### i386
