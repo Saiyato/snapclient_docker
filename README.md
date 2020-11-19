@@ -11,18 +11,18 @@ Todo: configure auto-build for changes in Badaix's repo
 ###### Overall
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 
-###### raspbian images
+Added the latest tag, which can be used on any arch and automatically selects the appropriate image.
+
+###### Raspbian images
 The Raspbian images have been discontinued. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
 
-###### ARM32v6 (Raspberry Pi 1, Raspberry Pi Zero)
+###### ARM32v6
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v6?style=flat-square">
-###### ARM32v7 (Raspberry Pi 2)
+###### ARM32v7
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v7?style=flat-square">
-###### ARM64v8 (Raspberry Pi 3, 3A+, 3B+, 4)
+###### ARM64v8
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm64v8?style=flat-square">
 
-###### i386
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/i386?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/i386?style=flat-square">
 ###### AMD64
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/amd64?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/amd64?style=flat-square">
 
@@ -35,7 +35,7 @@ To use the images, run (which automatically pulls) the image from the repo and s
 You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient:alpine -l` or `aplay -l`. Some example outputs:
 ###### BossDAC example with "snapclient -l"
 ```
-pi@buildpi:~ $ docker run --rm --device /dev/snd saiyato/snapclient:alpine -l
+pi@buildpi:~ $ docker run --rm --device /dev/snd saiyato/snapclient -l
 0: null
 Discard all samples (playback) or generate zero samples (capture)
 
@@ -88,7 +88,7 @@ docker run \
 --rm \
 --name snapclient \
 --device /dev/snd \
-saiyato/snapclient:alpine \
+saiyato/snapclient \
 -h 192.168.1.10 \
 -s BossDAC
 ```
@@ -98,7 +98,7 @@ docker run \
 --rm \
 --name snapclient \
 --device /dev/snd \
-saiyato/snapclient:alpine \
+saiyato/snapclient \
 -h 192.168.1.10 \
 -s sndrpihifiberry
 ```
