@@ -5,13 +5,11 @@ curl -SL "https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.
 mkdir ~/.docker
 # Add auths and experimental to docker-cli config
 echo '{"auths": '$DOCKERCFG',"experimental":"enabled"}' > ~/.docker/config.json
-# Check if all arch images are in dockerhub
-VIRTUAL_IMAGE=$(echo "${IMAGE_NAME}" | rev | cut -d- -f2- | rev )
 
-AMD64_IMAGE="$VIRTUAL_IMAGE-amd64"
-ARM64_IMAGE="$VIRTUAL_IMAGE-arm64v8"
-ARM32v7_IMAGE="$VIRTUAL_IMAGE-arm32v7"
-ARM32v6_IMAGE="$VIRTUAL_IMAGE-arm32v6"
+AMD64_IMAGE="amd64"
+ARM64_IMAGE="arm64v8"
+ARM32v7_IMAGE="arm32v7"
+ARM32v6_IMAGE="arm32v6"
 
 echo "checking if ${AMD64_IMAGE} Manifest exists"
 if ! ./docker-cli manifest inspect ${AMD64_IMAGE}; then AMD64_IMAGE='' ; fi
