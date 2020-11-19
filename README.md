@@ -32,7 +32,7 @@ To use the images, run (which automatically pulls) the image from the repo and s
 2. Define the hosting SnapServer you want to subscribe to
 3. Define the soundcard you wish to use (e.g. ALSA, sndrpihifiberry, BossDAC, etc.)
 
-You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient:alpine -l` or `aplay -l`. Some example outputs:
+You can list the soundcards by invoking `docker run --device /dev/snd saiyato/snapclient -l` or `aplay -l`. Some example outputs:
 ###### BossDAC example with "snapclient -l"
 ```
 pi@buildpi:~ $ docker run --rm --device /dev/snd saiyato/snapclient -l
