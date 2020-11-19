@@ -81,7 +81,7 @@ card 1: sndrpihifiberry [snd_rpi_hifiberry_dac], device 0: HifiBerry DAC HiFi pc
 ```
 
 ## Short and concise example
-The below example demonstrates how you can run the container using the above information. Note that I have added the `--rm` option, to auto-delete the container after exiting (for cleanup purposes).
+The below example demonstrates how you can run the container using the above information. Note that I have added the `--rm` option, to auto-delete the container after exiting (for cleanup purposes). If you want a daemonized container, just add `-d` before referencing the desired container. Note the latest update is that the latest tag will pull the appropriate container for your architecture (if supported).
 
 ```
 docker run \
@@ -92,10 +92,11 @@ saiyato/snapclient \
 -h 192.168.1.10 \
 -s BossDAC
 ```
-Or in the case of a Hifiberry soundcard
+Or in the case of a Hifiberry soundcard _and_ daemonized
 ```
 docker run \
 --rm \
+-d \
 --name snapclient \
 --device /dev/snd \
 saiyato/snapclient \
