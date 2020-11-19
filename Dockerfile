@@ -1,27 +1,17 @@
 # Install SnapClient on minimal OS
-FROM resin/rpi-raspbian:jessie
+FROM amd64/alpine:latest
+
 MAINTAINER Saiyato
 
-ARG SNAPCASTVERSION
-ARG VERSIONSUFFIX
+RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
+ && cd /root \
+ && git clone --recursive https://github.com/badaix/snapcast.git \
+ && cd snapcast/client \
+ && make \
+ && cp snapclient /usr/local/bin \
+ && cd / \
+ && apk --purge del git build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
+ && apk add avahi-libs flac libvorbis opus soxr alsa-lib \
+ && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
-ENV HOST snapserver
-ENV SOUNDCARD alsa
-
-RUN apt-get update && apt-get install -y \
-        dirmngr \
-        gnupg \
-        wget \
-        alsa-base \
-        alsa-utils
-
-RUN wget https://github.com/badaix/snapcast/releases/download/v${SNAPCASTVERSION}/snapclient_${SNAPCASTVERSION}${VERSIONSUFFIX}_armhf.deb
-
-RUN dpkg -i --force-all snapclient_${SNAPCASTVERSION}${VERSIONSUFFIX}_armhf.deb
-
-RUN apt-get -f install -y \
-        && rm -rf /var/lib/apt/lists/*
-
-RUN snapclient -v
-
-ENTRYPOINT ["/bin/bash","-c","snapclient -h $HOST -s $SOUNDCARD"]
+ENTRYPOINT ["snapclient"]
