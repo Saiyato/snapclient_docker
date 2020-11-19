@@ -14,9 +14,9 @@ ARM32_IMAGEv6="$VIRTUAL_IMAGE:arm32v6"
 
 echo "checking if ${AMD64_IMAGE} Manifest exists"
 if ! ./docker-cli manifest inspect ${AMD64_IMAGE}; then AMD64_IMAGE='' ; fi
-echo "checking if ${ARM32_IMAGE} Manifest exists"
+echo "checking if ${ARM32v6_IMAGE} Manifest exists"
 if ! ./docker-cli manifest inspect ${ARM32v6_IMAGE}; then ARM32v6_IMAGE='' ; fi
-echo "checking if ${ARM32_IMAGE} Manifest exists"
+echo "checking if ${ARM32v7_IMAGE} Manifest exists"
 if ! ./docker-cli manifest inspect ${ARM32v7_IMAGE}; then ARM32v7_IMAGE='' ; fi
 echo "checking if ${ARM64_IMAGE} Manifest exists"
 if ! ./docker-cli manifest inspect ${ARM64_IMAGE}; then ARM64_IMAGE='' ; fi
