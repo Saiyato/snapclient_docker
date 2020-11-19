@@ -5,6 +5,8 @@ curl -SL "https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.
 mkdir ~/.docker
 # Add auths and experimental to docker-cli config
 echo '{"auths": '$DOCKERCFG',"experimental":"enabled"}' > ~/.docker/config.json
+VIRTUAL_IMAGE=$(echo "${IMAGE_NAME}" | rev | cut -d- -f2- | rev )
+echo "Image name is: "+ $IMAGE_NAME
 
 AMD64_IMAGE="amd64"
 ARM64_IMAGE="arm64v8"
