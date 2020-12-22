@@ -1,11 +1,10 @@
 # Install SnapClient on minimal OS
-FROM arm32v7/alpine:latest
+FROM arm32v6/alpine:latest
 
 # Copy emulator from post checkout
 COPY qemu-arm-static /usr/bin/
 
 MAINTAINER Saiyato
-ARG TOKEN
 
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && cd /root \

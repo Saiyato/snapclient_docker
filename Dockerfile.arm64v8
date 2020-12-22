@@ -5,7 +5,6 @@ FROM arm64v8/alpine:latest
 COPY qemu-aarch64-static /usr/bin/
 
 MAINTAINER Saiyato
-ARG TOKEN
 
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && cd /root \
