@@ -12,7 +12,6 @@ case ${BUILD_ARCH} in
 	arm32v6 ) QEMU_ARCH="arm" ;;
 	arm32v7 ) QEMU_ARCH="arm" ;;
     arm64v8 ) QEMU_ARCH="aarch64" ;
-	raspbianv15 ) QEMU_ARCH="arm" ;;
  esac
 
 QEMU_USER_STATIC_DOWNLOAD_URL="https://github.com/multiarch/qemu-user-static/releases/download"
