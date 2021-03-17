@@ -3,17 +3,16 @@ FROM amd64/alpine:latest
 
 MAINTAINER Saiyato
 
-RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
+RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev  \
  && cd /root \
  && git clone --recursive https://github.com/badaix/snapcast.git \
- && mkdir snapcast/build \
- && cd snapcast/build \
- && cmake -DBUILD_WITH_PULSE=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_SERVER=OFF .. \
- && make \
- && cp ../bin/snapclient /usr/local/bin \
- && cd / \
- && apk --purge del git build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
- && apk add avahi-libs flac libvorbis opus soxr alsa-lib \
+ && cd snapcast \
+ && wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2 && tar -xvjf boost_1_75_0.tar.bz2 \
+ && cmake -S . -B build -DBOOST_ROOT=boost_1_75_0 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DBUILD_WITH_PULSE=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_SERVER=OFF .. \
+ && cmake --build build --parallel 3 \
+ && cp bin/snapclient /usr/local/bin \
+ && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
+ && apk add alsa-lib avahi-libs expat flac libvorbis opus soxr \
  && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
 ENTRYPOINT ["snapclient"]
