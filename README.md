@@ -11,7 +11,7 @@ Todo: configure auto-build for changes in Badaix's repo
 ###### Overall
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
 
-Added the latest tag, which can be used on any arch and automatically selects the appropriate image.
+Added the latest tag, which can be used on any arch and automatically selects the appropriate image. Note that this does not include PulseAudio support, you will need to append "-with-pulse" to the desired tag (e.g. latest-with-pulse).
 
 ###### Raspbian images
 The Raspbian images have been discontinued. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
@@ -103,3 +103,4 @@ saiyato/snapclient \
 -h 192.168.1.10 \
 -s sndrpihifiberry
 ```
+You can omit the "-s" parameter if you want to use the default output device.
