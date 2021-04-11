@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Use docker cli v18.09.6 to use experimental manifest feature
+curl -SL "https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.tgz" | tar xzv docker/docker --transform='s/.*/docker-cli/'
+mkdir ~/.docker
+# Add auths and experimental to docker-cli config
+echo '{"auths": '$DOCKERCFG',"experimental":"enabled"}' > ~/.docker/config.json
+VIRTUAL_IMAGE=$(echo "${IMAGE_NAME}" | rev | cut -d- -f2- | rev | sed 's/:.*//g')
+
+AMD64_IMAGE="$VIRTUAL_IMAGE:amd64"
+ARM64_IMAGE="$VIRTUAL_IMAGE:arm64v8"
+ARM32v6_IMAGE="$VIRTUAL_IMAGE:arm32v7"
+ARM32v7_IMAGE="$VIRTUAL_IMAGE:arm32v6"
+
+echo "checking if ${AMD64_IMAGE} Manifest exists"
+if ! ./docker-cli manifest inspect ${AMD64_IMAGE}; then AMD64_IMAGE='' ; fi
+echo "checking if ${ARM32v6_IMAGE} Manifest exists"
+if ! ./docker-cli manifest inspect ${ARM32v6_IMAGE}; then ARM32v6_IMAGE='' ; fi
+echo "checking if ${ARM32v7_IMAGE} Manifest exists"
+if ! ./docker-cli manifest inspect ${ARM32v7_IMAGE}; then ARM32v7_IMAGE='' ; fi
+echo "checking if ${ARM64_IMAGE} Manifest exists"
+if ! ./docker-cli manifest inspect ${ARM64_IMAGE}; then ARM64_IMAGE='' ; fi
+
+echo "Creating multiarch manifest"
+./docker-cli manifest create $VIRTUAL_IMAGE $AMD64_IMAGE $ARM32v6_IMAGE $ARM32v7_IMAGE $ARM64_IMAGE
+if [ -n "${ARM32v6_IMAGE}" ]; then
+  ./docker-cli manifest annotate $VIRTUAL_IMAGE $ARM32v6_IMAGE --os linux --arch arm --variant v6
+fi
+if [ -n "${ARM32v7_IMAGE}" ]; then
+  ./docker-cli manifest annotate $VIRTUAL_IMAGE $ARM32v7_IMAGE --os linux --arch arm --variant v7
+fi
+if [ -n "${ARM64_IMAGE}" ]; then
+./docker-cli manifest annotate $VIRTUAL_IMAGE $ARM64_IMAGE --os linux --arch arm64
+fi
+./docker-cli manifest push $VIRTUAL_IMAGE
+
+rm -r docker-cli ~/.docker
