@@ -4,10 +4,10 @@ FROM arm32v6/alpine:latest
 # Copy emulator from post checkout
 COPY qemu-arm-static /usr/bin/
 
-MAINTAINER Saiyato
+LABEL maintainer="Saiyato"
+WORKDIR /root
 
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
- && cd /root \
  && git clone --recursive https://github.com/badaix/snapcast.git \
  && mkdir snapcast/build \
  && cd snapcast/build \

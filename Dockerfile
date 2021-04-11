@@ -1,10 +1,10 @@
-# Install SnapClient on minimal OS
+# Install SnapServer on minimal OS - script v2.0.3 [2021-04-11]
 FROM amd64/alpine:latest
 
-MAINTAINER Saiyato
+LABEL maintainer="Saiyato"
+WORKDIR /root
 
 RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev  \
- && cd /root \
  && git clone --recursive https://github.com/badaix/snapcast.git \
  && cd snapcast \
  && wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2 && tar -xvjf boost_1_75_0.tar.bz2 \
@@ -12,7 +12,7 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && cmake --build build --parallel 3 \
  && cp bin/snapclient /usr/local/bin \
  && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
- && apk add alsa-lib avahi-libs expat flac libvorbis opus soxr \
+ && apk add alsa-lib avahi-libs flac libvorbis opus soxr \
  && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
 ENTRYPOINT ["snapclient"]
