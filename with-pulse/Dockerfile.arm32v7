@@ -7,7 +7,6 @@ COPY qemu-arm-static /usr/bin/
 LABEL maintainer="Saiyato"
 WORKDIR /root
 
-RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
 RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev pulseaudio-dev soxr-dev  \
  && git clone --recursive https://github.com/badaix/snapcast.git \
  && cd snapcast \
