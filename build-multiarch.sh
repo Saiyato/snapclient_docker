@@ -4,8 +4,8 @@
 while getopts f:t: flag
 do
 	case "${flag}" in
-		f) DOCKERFILE_PATH=${OPTARG}
-		t) TAG=${OPTARG}
+		f) DOCKERFILE_PATH=${OPTARG};;
+		t) TAG=${OPTARG};;
 	esac
 done
 
