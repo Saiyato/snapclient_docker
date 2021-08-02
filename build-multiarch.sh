@@ -9,7 +9,10 @@ do
 	esac
 done
 
-if [ -z "$DOCKERFILE_PATH" || -z "$TAG" ]; then
+if [[ ! -z "$DOCKERFILE_PATH" && ! -z "$TAG" ]] ; then
+	
+	echo "Building with tag: '${TAG}' and dockerfile: ${DOCKERFILE_PATH}"
+	
 	# Get architecture from Dockerfile.arch filename
 	BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
 
