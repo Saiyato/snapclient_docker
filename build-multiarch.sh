@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# take argument
+# Take arguments
 while getopts f:t: flag
 do
 	case "${flag}" in
