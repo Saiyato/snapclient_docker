@@ -33,13 +33,16 @@ The Raspbian images have been discontinued. The Alpine images work on Debian and
 
 ###### ARM32v6
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">
+
 ###### ARM32v7
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v7?style=flat-square">
+
 ###### ARM64v8
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm64v8?style=flat-square">
 
 ###### AMD64
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/amd64?style=flat-square">
+
 ###### i386
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/i386?style=flat-square">
 
