@@ -1,4 +1,4 @@
-# Install SnapServer on minimal OS - script v2.0.3 [2021-04-11]
+# Install SnapServer on minimal OS - script v2.0.4 [2021-09-29]
 FROM amd64/alpine:3.14.2
 
 LABEL maintainer="Saiyato"

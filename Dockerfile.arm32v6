@@ -1,4 +1,4 @@
-# Install SnapClient on minimal OS
+# Install SnapServer on minimal OS - script v2.0.4 [2021-09-29]
 FROM arm32v6/alpine:3.14.2
 
 # Copy emulator from post checkout
