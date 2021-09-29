@@ -1,5 +1,5 @@
 # Install SnapServer on minimal OS - script v2.0.3 [2021-04-11]
-FROM amd64/alpine:latest
+FROM amd64/alpine:3.14.2
 
 LABEL maintainer="Saiyato"
 WORKDIR /root
