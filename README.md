@@ -12,13 +12,13 @@ Unfortunately Docker auto-build has been discontinued for free use, so I have to
 1. Clone the repo
 2. Make the bash-files executable (`chmod +x`)
 3. Install Docker desktop
-4. ./build-multiarch.sh -t <any_tag_you_want> -f <dockerfile>
+4. `./build-multiarch.sh -t <any_tag_you_want> -f <dockerfile>`
 e.g. `./build-multiarch.sh -t saiyato/snapclient:arm32v7 -f Dockerfile.arm32v7`
 
 Want to upload it to your own Docker Hub repo? Also no problem
 1. Continue from the above (clone, chmod, etc)
 2. Login to Docker (`docker login`) to save your credentials on your machine
-3. ./push_to_dockerhub.sh -i <the_image_you_want_to_upload_for>
+3. `./push_to_dockerhub.sh -i <the_image_you_want_to_upload_for>`
 e.g. `./push_to_dockerhub.sh -i saiyato/snapclient`
 
 Note that the upload script will look for the arm32v6, arm32v7, arm64v8, amd64 and i386 tags to push and annotate.
