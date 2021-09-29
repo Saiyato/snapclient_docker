@@ -6,7 +6,22 @@ This repository contains the scripts to auto-build images for SnapClient (the *p
 
 I've then moved forward to *{arch}/alpine:latest* instead, and build from source instead of using pre-built binaries from the package archive. So all architecture specific images use the Alpine base image.
 
-Todo: configure auto-build for changes in Badaix's repo
+[ ] Todo: configure auto-build for changes in Badaix's repo
+
+Unfortunately Docker auto-build has been discontinued for free use, so I have to manually build, push and create manifests. If you want to do this yourself, no problem.
+1. Clone the repo
+2. Make the bash-files executable (`chmod +x`)
+3. Install Docker desktop
+4. ./build-multiarch.sh -t <any_tag_you_want> -f <dockerfile>
+e.g. `./build-multiarch.sh -t saiyato/snapclient:arm32v7 -f Dockerfile.arm32v7`
+
+Want to upload it to your own Docker Hub repo? Also no problem
+1. Continue from the above (clone, chmod, etc)
+2. Login to Docker (`docker login`) to save your credentials on your machine
+3. ./push_to_dockerhub.sh -i <the_image_you_want_to_upload_for>
+e.g. `./push_to_dockerhub.sh -i saiyato/snapclient`
+
+Note that the upload script will look for the arm32v6, arm32v7, arm64v8, amd64 and i386 tags to push and annotate.
 
 ###### Overall
 <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapclient?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapclient?style=flat-square">
@@ -17,16 +32,18 @@ Added the latest tag, which can be used on any arch and automatically selects th
 The Raspbian images have been discontinued. The Alpine images work on Debian and are way smaller (and therefore more suited for the ARM platform).
 
 ###### ARM32v6
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v6?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v6?style=flat-square">
 ###### ARM32v7
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm32v7?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm32v7?style=flat-square">
 ###### ARM64v8
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/arm64v8?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/arm64v8?style=flat-square">
 
 ###### AMD64
-<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/amd64?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapclient/amd64?style=flat-square">
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/amd64?style=flat-square">
+###### i386
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapclient/i386?style=flat-square">
 
-## How to use
+## How to use the images
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
 1. Add the sound device of the host to the container (for security reasons I want to refrain from using `--privileged`)
 2. Define the hosting SnapServer you want to subscribe to
