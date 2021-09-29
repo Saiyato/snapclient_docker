@@ -28,7 +28,7 @@ if [[ ! -z "$DOCKERFILE_PATH" && ! -z "$TAG" ]] ; then
 		esac
 
 		if [[ -z QEMU_ARCH ]] ; then
-			echo f"Unsupported architecture (${QEMU_ARCH})" && exit(0);
+			echo f"Unsupported architecture (${QEMU_ARCH})" && exit 0;
 		fi
 
 		QEMU_USER_STATIC_DOWNLOAD_URL="https://github.com/multiarch/qemu-user-static/releases/download"
