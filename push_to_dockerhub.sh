@@ -81,8 +81,7 @@ if [ -n "$ARM64v8_IMAGE" ]; then
 	./docker-cli manifest annotate $IMAGE $ARM64v8_IMAGE --os linux --arch arm64
 fi
 
-./docker-cli manifest push $IMAGE
+./docker-cli manifest push --purge $IMAGE
 
 # Cleanup
 rm -r docker-cli
-

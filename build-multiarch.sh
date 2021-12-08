@@ -1,33 +1,28 @@
 #!/bin/bash
 
 # Take arguments
-while getopts f:t: flag
+while getopts i:a:c flag
 do
 	case "${flag}" in
-		f) DOCKERFILE_PATH=${OPTARG};;
-		t) TAG=${OPTARG};;
+		i) IMAGE_NAME=${OPTARG};;
+		a) ARCHITECTURE=${OPTARG};;
+		c) CACHE="true";;
 	esac
 done
 
-if [[ ! -z "$DOCKERFILE_PATH" && ! -z "$TAG" ]] ; then
+if [[ ! -z "$IMAGE_NAME" && ! -z "$ARCHITECTURE" ]] ; then
 	
-	echo "Building with tag: '${TAG}' and dockerfile: ${DOCKERFILE_PATH}"
-	
-	# Get architecture from Dockerfile.arch filename
-	BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
+	echo "Building image: '${IMAGE_NAME}' on architecture: ${ARCHITECTURE}"
 
-	# For amd64 filename is Dockerfile
-	if [[ "${BUILD_ARCH}" != "Dockerfile" || "${BUILD_ARCH}" != "i386" ]] ; then
+	if [[ $ARCHITECTURE != "amd64" && $ARCHITECTURE != "i386" ]] ; then
 
-		case ${BUILD_ARCH} in
-			amd64 ) QEMU_ARCH="x86_64" ;;
-			i386 ) QEMU_ARCH="i386" ;;
+		case ${ARCHITECTURE} in
 			arm32v6 ) QEMU_ARCH="arm" ;;
 			arm32v7 ) QEMU_ARCH="arm" ;;
 			arm64v8 ) QEMU_ARCH="aarch64" ;
 		esac
 
-		if [[ -z QEMU_ARCH ]] ; then
+		if [[ -z $QEMU_ARCH ]] ; then
 			echo "Unsupported architecture ($QEMU_ARCH)" && exit 0;
 		fi
 
@@ -39,16 +34,25 @@ if [[ ! -z "$DOCKERFILE_PATH" && ! -z "$TAG" ]] ; then
 
 		curl -SL "${QEMU_USER_STATIC_DOWNLOAD_URL}/${QEMU_USER_STATIC_LATEST_TAG}/x86_64_qemu-${QEMU_ARCH}-static.tar.gz" \
 			| tar xzv
-			
-		BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
 
 		docker run --rm --privileged multiarch/qemu-user-static:register --reset
 		
 	else
-		echo 'qemu-user-static: Download not required for current arch'
+		echo 'qemu-user-static: Download not required for current architecture'
 	fi
 	
-	docker build -t ${TAG} -f $DOCKERFILE_PATH .
+	if [[ $CACHE == "true" ]] ; then
+		echo "Running build using caching"
+		docker build -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE .
+	else
+		echo "Building without cache"
+		docker build -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE --no-cache .
+	fi
+
+	if [[ ! -z $QEMU_ARCH ]] ; then
+		rm qemu-*-static
+	fi
+	
 else
-	echo "No tag or Dockerfile provided. Usage: -t {tag} -f {dockerfile location}"
+	echo "No image or architecture provided. Usage: -i {image} -a {architecture}"
 fi
