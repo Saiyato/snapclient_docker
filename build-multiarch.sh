@@ -43,10 +43,10 @@ if [[ ! -z "$IMAGE_NAME" && ! -z "$ARCHITECTURE" ]] ; then
 	
 	if [[ $CACHE == "true" ]] ; then
 		echo "Running build using caching"
-		docker build -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE .
+		docker build --rm -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE .
 	else
 		echo "Building without cache"
-		docker build -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE --no-cache .
+		docker build --rm -t $IMAGE_NAME:$ARCHITECTURE --build-arg ARCHITECTURE=$ARCHITECTURE --no-cache .
 	fi
 
 	if [[ ! -z $QEMU_ARCH ]] ; then
